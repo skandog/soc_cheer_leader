@@ -1,4 +1,5 @@
 from multiprocessing import AuthenticationError
+from re import search
 import tweepy
 import os
 from dotenv import load_dotenv
@@ -18,5 +19,38 @@ authenticator.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(authenticator, wait_on_rate_limit=True)
 
+hashtag = "theSchoolOfCode"
+tweet_number = 40
+omitted = ["tensorflow", "tumblr", "diagorovenko",
+           "https://koukokaga", "bhubaneswar", "win", "coding", "hate", "fuck", "shit"]
+
+tweets = tweepy.Cursor(api.search_tweets, hashtag).items(tweet_number)
 
 
+# def string_filter(omit, string):
+#     for x in omit:
+#         if any(x in string):
+#             print(x)
+#             return False
+#         else:
+#             print(x)
+#             return True
+
+
+# print(string_filter(["ff", "gg"], "jjgkldfop tensorflow"))
+
+
+def search_bot():
+    for tweet in tweets:
+        print(tweet.text)
+        try:
+            tweet.retweet()
+            api.create_favorite(tweet.id)
+            print("retweeted: " + tweet.text)
+            time.sleep(10)
+        except tweepy.TweepyException as e:
+            print(e.reason)
+            time.sleep(2)
+
+
+search_bot()
