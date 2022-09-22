@@ -39,18 +39,28 @@ tweets = tweepy.Cursor(api.search_tweets, hashtag).items(tweet_number)
 
 # print(string_filter(["ff", "gg"], "jjgkldfop tensorflow"))
 
+def search_bot(hashtag, tweet_number):
 
-def search_bot():
+    #    omitted = ["tensorflow", "tumblr", "diagorovenko",
+    #           "https://koukokaga", "bhubaneswar", "win", "coding", "hate", "fuck", "shit"]
+
+    tweets = tweepy.Cursor(api.search_tweets, hashtag).items(tweet_number)
+
     for tweet in tweets:
-        print(tweet.text)
         try:
             tweet.retweet()
             api.create_favorite(tweet.id)
             print("retweeted: " + tweet.text)
-            time.sleep(10)
+            time.sleep(60)
         except tweepy.TweepyException as e:
-            print(e.reason)
+            print(e)
             time.sleep(2)
 
 
-search_bot()
+while True:
+    search_bot("#100DaysOfCode", 50)
+    time.sleep(600)
+    search_bot("@theschoolofcode", 20)
+    time.sleep(600)
+    search_bot("I love coding", 10)
+    time.sleep(600)

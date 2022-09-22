@@ -49,12 +49,30 @@ def reply():
         if '#botlife' in tweet.full_text.lower():
             print(str(tweet.id) + ' - ' + tweet.full_text)
             api.update_status("@" + tweet.user.screen_name +
-                              " I love being a robot, I can reply, like and retweet babyyyy", in_reply_to_status_id=tweet.id)
+                              " I love my little botlife! Thank you for talking to me btw. I am still kinda limited, but I can reply to, like and retweet you " + tweet.user.name + " babyyyy", in_reply_to_status_id=tweet.id)
             api.create_favorite(tweet.id)
             api.retweet(tweet.id)
             store_last_seen(FILE_NAME, tweet.id)
 
 
+def search_bot(screen_name, count):
+    print("reporting for duty sir! Here to retweet my homies tweets")
+    # tweets = tweepy.Cursor(api.search_tweets, hashtag).items(tweet_number)
+    tweets = api.user_timeline(
+        screen_name=screen_name, count=count, exclude_replies=True)
+    for tweet in tweets:
+        try:
+            tweet.retweet()
+            api.create_favorite(tweet.id)
+            print("retweeted: " + tweet.text)
+            time.sleep(27)
+        except tweepy.TweepyException as e:
+            print(e)
+            print(tweet.text)
+            time.sleep(2)
+
+
 while True:
+    search_bot("skandog_", 5)
     reply()
-    time.sleep(15)
+    time.sleep(30)
