@@ -1,12 +1,12 @@
-name: Reply
+name: Tweet Liker
 
 on:
-  #push:
+  push:
   schedule:
-    - cron: "*/59 * * * *"
+    - cron: "*/22 * * * *"
 
 jobs:
-  replying:
+  liking-tweets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,14 +22,4 @@ jobs:
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
           API_KEY: ${{ secrets.API_KEY }}
           API_KEY_SECRET: ${{ secrets.API_KEY_SECRET }}
-        run: python main.py
-      - name: setup git config
-        run: |
-          # setup the username and email.
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-      - name: commit
-        run: |
-          git add .
-          git commit -m "updated last read"
-          git push origin main
+        run: python searchbot.py
