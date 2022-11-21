@@ -16,7 +16,7 @@ jobs:
           python-version: "3.10"
       - name: install dependancies
         run: pip install tweepy python-dotenv
-      - name: respond to tweets
+      - name: retweeting babyyyyy
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
