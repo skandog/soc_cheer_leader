@@ -1,9 +1,7 @@
-from multiprocessing import AuthenticationError
-from re import search
 import tweepy
 import os
 from dotenv import load_dotenv
-import json
+import random
 
 import time
 
@@ -51,12 +49,20 @@ def search_bot(hashtag, tweet_number):
             tweet.retweet()
             api.create_favorite(tweet.id)
             print("retweeted: " + tweet.text)
-            time.sleep(60)
+            time.sleep(4)
         except tweepy.TweepyException as e:
             print(e)
             time.sleep(2)
 
 
-search_bot("#100DaysOfCode", 5)
+# List of possible search terms
+q = ["#100DaysOfCode", "@theschoolofcode", "I love coding",
+     "#python", "#dev", "#coding", "#DataScience", "#AI"]
+
+# Randomiser to choose search term
+searchterm = q[random.randint(0, len(q) - 1)]
+
+
+search_bot(searchterm, 5)
 # search_bot("@theschoolofcode", 20)
 # search_bot("I love coding", 10)
