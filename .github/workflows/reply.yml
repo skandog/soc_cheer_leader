@@ -23,13 +23,14 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_KEY_SECRET: ${{ secrets.API_KEY_SECRET }}
         run: python main.py
-            - name: setup git config
-        run: |
-          # setup the username and email.
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-      - name: commit
-        run: |
-          git add .
-          git commit -m "updated count"
-          git push origin main
+      # - name: setup git config
+      #   run: |
+      #     # setup the username and email.
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
+      # - name: commit
+      #   run: |
+      #     git add .
+      #     git commit -m "updated last read"
+      #     git push origin main
+
