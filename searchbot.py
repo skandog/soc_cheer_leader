@@ -57,10 +57,6 @@ def search_bot(hashtag, tweet_number):
             time.sleep(2)
 
 
-while True:
-    search_bot("#100DaysOfCode", 50)
-    time.sleep(600)
-    search_bot("@theschoolofcode", 20)
-    time.sleep(600)
-    search_bot("I love coding", 10)
-    time.sleep(600)
+search_bot("#100DaysOfCode", 5)
+# search_bot("@theschoolofcode", 20)
+# search_bot("I love coding", 10)
