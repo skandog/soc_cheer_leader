@@ -72,7 +72,4 @@ def search_bot(screen_name, count):
             time.sleep(2)
 
 
-while True:
-    search_bot("skandog_", 5)
-    reply()
-    time.sleep(30)
+reply()
