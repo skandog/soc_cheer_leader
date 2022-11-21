@@ -55,7 +55,7 @@ def search_bot(hashtag, tweet_number):
         #                  sort_keys=True, indent=4, separators=(",", ": ")))
         if tweet._json["user"]["followers_count"] > 20:
             try:
-                # tweet.retweet()
+                tweet.retweet()
                 api.create_favorite(tweet.id)
                 print("retweeted: " + tweet.text)
                 time.sleep(20)
@@ -74,4 +74,4 @@ q = ["#100DaysOfCode", "@theschoolofcode", "I love coding",
 searchterm = q[random.randint(0, len(q) - 1)]
 print("Current search term: ", searchterm)
 
-search_bot(searchterm, 10)
+search_bot(searchterm, 25)
