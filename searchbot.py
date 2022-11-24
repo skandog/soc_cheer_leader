@@ -58,7 +58,7 @@ def search_bot(hashtag, tweet_number):
                 tweet.retweet()
                 api.create_favorite(tweet.id)
                 print("retweeted: " + tweet.text)
-                time.sleep(20)
+                time.sleep(10)
             except tweepy.TweepyException as e:
                 print(e)
                 time.sleep(2)
