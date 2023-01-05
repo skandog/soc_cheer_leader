@@ -2,8 +2,8 @@ name: Tweet Liker
 
 on:
   push:
-  schedule:
-    - cron: "*/22 * * * *"
+  # schedule:
+   # - cron: "* */2 * * *"
 
 jobs:
   liking-tweets:
